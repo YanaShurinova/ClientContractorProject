@@ -38,18 +38,11 @@
         <groupTable id="contractorsTable"
                     width="100%"
                     dataContainer="contractorsDc">
-            <actions>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
+
             <columns>
             </columns>
             <simplePagination/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="editBtn" action="contractorsTable.edit"/>
-                <button id="removeBtn" action="contractorsTable.remove"/>
-            </buttonsPanel>
+
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
