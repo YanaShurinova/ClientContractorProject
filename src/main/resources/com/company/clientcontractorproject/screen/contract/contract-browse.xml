@@ -6,7 +6,10 @@
     <data readOnly="true">
         <collection id="contractsDc"
                     class="com.company.clientcontractorproject.entity.Contract">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="client" fetchPlan="_base"/>
+                <property name="contractor" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="contractsDl">
                 <query>
                     <![CDATA[select e from Contract e]]>
@@ -47,6 +50,8 @@
                 <column id="dateOfConclusion"/>
                 <column id="periodOfExecution"/>
                 <column id="amountOfServices"/>
+                <column id="client"/>
+                <column id="contractor"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
