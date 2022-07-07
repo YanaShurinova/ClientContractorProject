@@ -42,7 +42,6 @@
             <columns>
             </columns>
             <simplePagination/>
-
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
