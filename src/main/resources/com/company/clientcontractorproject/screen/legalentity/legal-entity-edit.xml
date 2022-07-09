@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://legalEntityEdit.caption"
         focusComponent="form">
     <data>
@@ -8,6 +9,23 @@
             <fetchPlan extends="_base"/>
             <loader/>
         </instance>
+        <collection id="contractsDc"
+                    class="com.company.clientcontractorproject.entity.Contract">
+            <fetchPlan extends="_base">
+                <property name="client" fetchPlan="_base"/>
+                <property name="contractor" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="contractsDl">
+                <query>
+                    <![CDATA[select e from Contract e]]>
+                    <condition>
+                        <c:jpql>
+                            <c:where>e.contractor=:contractor</c:where>
+                        </c:jpql>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -33,6 +51,18 @@
                 <textField id="directorField" property="director"/>
             </column>
         </form>
+        <groupTable id="contractsTable"
+                    width="100%"
+                    dataContainer="contractsDc">
+            <columns>
+                <column id="dateOfConclusion"/>
+                <column id="periodOfExecution"/>
+                <column id="amountOfServices"/>
+                <column id="client"/>
+                <column id="contractor"/>
+            </columns>
+            <simplePagination/>
+        </groupTable>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

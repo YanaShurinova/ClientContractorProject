@@ -15,7 +15,7 @@ public class ClientService {
     private DataManager dataManager;
 
     public boolean isCorrectEmail(String email){
-        return email.matches("[0-9]*[A-Za-z]+\\.*\\@[A-Za-z]+\\.[A-Za-z]+");
+        return email.matches("[0-9A-Za-z\\.]+@[A-Za-z]+\\.[A-Za-z]+");
     }
 
 
