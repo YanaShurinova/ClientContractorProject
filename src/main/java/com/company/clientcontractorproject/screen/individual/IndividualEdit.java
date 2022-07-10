@@ -3,6 +3,7 @@ package com.company.clientcontractorproject.screen.individual;
 import com.company.clientcontractorproject.app.IndividualService;
 import com.company.clientcontractorproject.entity.Contract;
 import com.company.clientcontractorproject.entity.Contractor;
+import io.jmix.core.Messages;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.CollectionLoader;
@@ -25,6 +26,9 @@ public class IndividualEdit extends StandardEditor<Individual> {
     private CollectionContainer<Contract> contractsDc;
     @Autowired
     private CollectionLoader<Contract> contractsDl;
+    @Autowired
+    private Messages messages;
+
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
         Individual individual=getEditedEntity();
@@ -32,7 +36,7 @@ public class IndividualEdit extends StandardEditor<Individual> {
             event.resume();
         }
         else {
-            notifications.create().withCaption("The email is not correct.").show();
+            notifications.create().withCaption(messages.getMessage("com.company.clientcontractorproject.screen.individual","theemailisnotcorrect")).show();
             event.preventCommit();
         }
     }

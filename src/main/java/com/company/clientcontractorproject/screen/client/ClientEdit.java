@@ -3,6 +3,7 @@ package com.company.clientcontractorproject.screen.client;
 import com.company.clientcontractorproject.app.ClientService;
 import com.company.clientcontractorproject.entity.Contract;
 import com.vaadin.data.HasValue;
+import io.jmix.core.Messages;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.model.*;
 import io.jmix.ui.screen.*;
@@ -23,6 +24,9 @@ public class ClientEdit extends StandardEditor<Client> {
     private CollectionContainer<Contract> contractsDc;
     @Autowired
     private InstanceContainer<Client> clientDc;
+    @Autowired
+    private Messages messages;
+
     @Subscribe
     public void onBeforeCommitChanges(BeforeCommitChangesEvent event) {
         Client client = getEditedEntity();
@@ -30,7 +34,7 @@ public class ClientEdit extends StandardEditor<Client> {
             event.resume();
         }
         else {
-            notifications.create().withCaption("The email is not correct.").show();
+            notifications.create().withCaption(messages.getMessage("com.company.clientcontractorproject.screen.individual","theemailisnotcorrect")).show();
             event.preventCommit();
         }
     }
